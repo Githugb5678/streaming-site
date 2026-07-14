@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamSpace - Profile</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">StreamSpace</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="upload.html">Upload</a>
+      <a href="login.html" id="profileAuthLink">Login</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="card">
+      <h2>Account</h2>
+      <p id="profileName">Guest</p>
+      <button id="logoutBtn" class="button">Logout</button>
+    </section>
+
+    <section class="card">
+      <h2>Subscription Tiers</h2>
+      <div id="tiers" class="grid-3"></div>
+    </section>
+
+    <section class="card">
+      <h2>Watch History</h2>
+      <div id="history" class="stack"></div>
+    </section>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/videos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

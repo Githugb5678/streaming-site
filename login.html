@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamSpace - Login</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+  <main class="auth-shell">
+    <h1>StreamSpace</h1>
+    <div class="auth-tabs">
+      <button data-view="login" class="active">Login</button>
+      <button data-view="signup">Sign Up</button>
+    </div>
+
+    <form id="loginForm" class="card auth-form">
+      <h2>Login</h2>
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <button class="button" type="submit">Login</button>
+    </form>
+
+    <form id="signupForm" class="card auth-form hidden">
+      <h2>Sign Up</h2>
+      <input type="text" id="signupName" placeholder="Name" required />
+      <input type="email" id="signupEmail" placeholder="Email" required />
+      <input type="password" id="signupPassword" placeholder="Password" required />
+      <button class="button" type="submit">Create Account</button>
+    </form>
+
+    <p id="authMessage"></p>
+    <a href="index.html">← Back to home</a>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
