@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamSpace - Player</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/player.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">StreamSpace</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="profile.html">Profile</a>
+      <a href="upload.html">Upload</a>
+    </nav>
+  </header>
+
+  <main class="player-layout">
+    <section>
+      <h1 id="videoTitle"></h1>
+      <div class="player-shell">
+        <video id="videoElement" playsinline></video>
+        <div class="controls">
+          <button id="playPauseBtn">Play</button>
+          <input id="timeline" type="range" min="0" max="100" value="0" />
+          <input id="volume" type="range" min="0" max="1" step="0.1" value="1" />
+          <select id="quality"></select>
+          <button id="fullscreenBtn">Fullscreen</button>
+        </div>
+      </div>
+      <div class="meta">
+        <button id="likeBtn">👍 <span id="likeCount">0</span></button>
+        <button id="dislikeBtn">👎 <span id="dislikeCount">0</span></button>
+      </div>
+
+      <section class="card">
+        <h3>Comments</h3>
+        <form id="commentForm">
+          <textarea id="commentText" rows="3" placeholder="Add a comment..."></textarea>
+          <button class="button" type="submit">Post Comment</button>
+        </form>
+        <div id="commentsList" class="stack"></div>
+      </section>
+    </section>
+
+    <aside>
+      <h3>Up Next</h3>
+      <div id="upNext" class="stack"></div>
+    </aside>
+  </main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/videos.js"></script>
+  <script src="js/player.js"></script>
+</body>
+</html>
