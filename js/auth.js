@@ -21,7 +21,6 @@
     event.preventDefault();
     const name = document.getElementById('signupName').value.trim();
     const email = document.getElementById('signupEmail').value.trim().toLowerCase();
-    const password = document.getElementById('signupPassword').value;
     const users = StorageManager.getUsers();
 
     if (users.some((user) => user.email === email)) {
@@ -29,7 +28,7 @@
       return;
     }
 
-    StorageManager.saveUser({ name, email, password, createdAt: new Date().toISOString() });
+    StorageManager.saveUser({ name, email, createdAt: new Date().toISOString() });
     StorageManager.setCurrentUser(email);
     window.location.href = 'index.html';
   });
@@ -37,8 +36,7 @@
   loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-    const password = document.getElementById('loginPassword').value;
-    const user = StorageManager.getUsers().find((u) => u.email === email && u.password === password);
+    const user = StorageManager.getUsers().find((u) => u.email === email);
 
     if (!user) {
       message.textContent = 'Invalid email or password.';

@@ -24,7 +24,8 @@
     getUsers: () => read(KEYS.USERS, []),
     saveUser: (user) => {
       const users = Storage.getUsers();
-      users.push(user);
+      const { password, ...safeUser } = user;
+      users.push(safeUser);
       write(KEYS.USERS, users);
     },
     setCurrentUser: (email) => localStorage.setItem(KEYS.CURRENT, email),

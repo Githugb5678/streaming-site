@@ -24,7 +24,7 @@
           </div>
           <div class="video-body">
             <h4>${Utils.escapeHtml(video.title)}</h4>
-            <div class="meta-line">${video.category} • ${Utils.formatViews(video.views || 0)}</div>
+            <div class="meta-line">${Utils.escapeHtml(video.category)} • ${Utils.formatViews(video.views || 0)}</div>
             ${paywall ? '<p class="small">🔒 Premium</p>' : ''}
           </div>
         </a>
@@ -62,7 +62,7 @@
     recommendations.innerHTML = VideoDB.getRecommendations().map((video) => `
       <a class="card" href="video-player.html?id=${video.id}">
         <strong>${Utils.escapeHtml(video.title)}</strong>
-        <div class="small subtle">${video.category}</div>
+        <div class="small subtle">${Utils.escapeHtml(video.category)}</div>
       </a>
     `).join('');
   }
@@ -122,7 +122,7 @@
     const renderUploads = () => {
       const uploads = StorageManager.getUploads();
       uploadsList.innerHTML = uploads.map((video) => `
-        <div class="card"><strong>${Utils.escapeHtml(video.title)}</strong><div class="small subtle">${video.category} • ${video.duration}</div></div>
+        <div class="card"><strong>${Utils.escapeHtml(video.title)}</strong><div class="small subtle">${Utils.escapeHtml(video.category)} • ${Utils.escapeHtml(video.duration)}</div></div>
       `).join('') || '<p class="subtle">No uploads yet.</p>';
     };
 
@@ -142,6 +142,7 @@
         progress.style.width = `${Math.min(value, 100)}%`;
         if (value >= 100) {
           clearInterval(timer);
+          const uploadSrc = file ? URL.createObjectURL(file) : 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
           StorageManager.addUpload({
             id: `u_${Date.now()}`,
             title,
@@ -151,8 +152,8 @@
             premium: false,
             thumbnail: 'https://picsum.photos/640/360',
             description: 'User uploaded video',
-            src: file ? URL.createObjectURL(file) : 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-            qualities: { '720p': file ? URL.createObjectURL(file) : 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4' },
+            src: uploadSrc,
+            qualities: { '720p': uploadSrc },
             createdAt: Utils.now()
           });
           status.textContent = 'Upload complete.';

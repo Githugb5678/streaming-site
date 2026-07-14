@@ -30,7 +30,7 @@
 
   Object.entries(video.qualities || {}).forEach(([label, source]) => {
     const option = document.createElement('option');
-    option.value = source;
+    option.value = label;
     option.textContent = label;
     if (source === video.src) option.selected = true;
     quality.appendChild(option);
@@ -39,7 +39,9 @@
   quality.addEventListener('change', () => {
     const wasPlaying = !videoElement.paused;
     const currentTime = videoElement.currentTime;
-    videoElement.src = quality.value;
+    const nextSource = video.qualities?.[quality.value];
+    if (!nextSource) return;
+    videoElement.src = nextSource;
     videoElement.currentTime = currentTime;
     if (wasPlaying) videoElement.play();
   });
@@ -144,7 +146,7 @@
     upNext.innerHTML = VideoDB.getAll().filter((v) => v.id !== video.id).slice(0, 6).map((item) => `
       <a class="card" href="video-player.html?id=${item.id}">
         <strong>${Utils.escapeHtml(item.title)}</strong>
-        <div class="small subtle">${item.category}</div>
+        <div class="small subtle">${Utils.escapeHtml(item.category)}</div>
       </a>
     `).join('');
   }
